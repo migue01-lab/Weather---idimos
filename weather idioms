@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Idioms — Module 22 (B2) Controlled Practice</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .option-btn {
+      transition: transform 0.12s ease, border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .option-btn:active:not(:disabled) {
+      transform: scale(0.985);
+    }
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-in {
+      animation: fadeSlideUp 0.22s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-sky-50 via-slate-50 to-indigo-50 text-slate-800 flex flex-col">
+
+  <!-- Top Bar -->
+  <header class="w-full border-b border-slate-200/80 bg-white/80 backdrop-blur-md sticky top-0 z-20">
+    <div class="max-w-2xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2.5 min-w-0">
+        <span class="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-sky-600 text-white text-lg shadow-sm shrink-0" aria-hidden="true">🌦️</span>
+        <div class="min-w-0">
+          <h1 class="text-sm sm:text-base font-bold text-slate-900 truncate">Weather Idioms Practice</h1>
+          <p class="text-xs text-slate-500 font-medium">Module 22 · B2 Upper-Intermediate</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 shrink-0">
+        <button id="btn-qr-open" type="button" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-sky-700 hover:bg-sky-50 border border-slate-200 bg-white transition-colors" title="Show QR code for this page">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
+          </svg>
+          <span>QR</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 w-full max-w-2xl mx-auto px-4 py-6 sm:py-8 flex flex-col justify-center">
+
+    <!-- SCREEN 1: START -->
+    <section id="screen-start" class="bg-white rounded-2xl shadow-sm border border-slate-200/90 p-6 sm:p-8 animate-in">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-50 border border-sky-200 text-sky-700 text-xs font-semibold mb-4">
+        <span>Controlled Practice</span>
+        <span>·</span>
+        <span>12 Questions</span>
+      </div>
+
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-2">
+        Master Weather Idioms in Context
+      </h2>
+      <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+        Read each B2-level situation carefully and choose the idiom that best completes the sentence or matches the meaning. You will get instant feedback after every question.
+      </p>
+
+      <div class="space-y-4 mb-6">
+        <div>
+          <label for="student-name" class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1.5">
+            Your Name (Optional)
+          </label>
+          <input id="student-name" type="text" maxlength="40" placeholder="e.g., Sofia M."
+            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500" />
+        </div>
+
+        <label class="flex items-center justify-between gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer select-none">
+          <div>
+            <span class="block text-sm font-semibold text-slate-800">Shuffle questions &amp; options</span>
+            <span class="block text-xs text-slate-500">Recommended for classroom practice</span>
+          </div>
+          <input id="toggle-shuffle" type="checkbox" checked class="w-5 h-5 rounded text-sky-600 focus:ring-sky-500 border-slate-300" />
+        </label>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3">
+        <button id="btn-start" type="button"
+          class="flex-1 py-3.5 px-5 rounded-xl bg-sky-600 hover:bg-sky-700 active:bg-sky-800 text-white font-semibold text-base shadow-sm transition-colors flex items-center justify-center gap-2">
+          <span>Start Practice</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </button>
+        <button id="btn-glossary-open" type="button"
+          class="py-3.5 px-4 rounded-xl bg-white hover:bg-slate-50 text-slate-700 font-semibold text-sm border border-slate-300 transition-colors">
+          Preview 12 Idioms
+        </button>
+      </div>
+    </section>
+
+    <!-- SCREEN 2: QUIZ -->
+    <section id="screen-quiz" class="hidden space-y-4 animate-in">
+      <!-- Progress & Score -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200/90 p-4">
+        <div class="flex items-center justify-between text-xs font-semibold text-slate-600 mb-2">
+          <span id="quiz-progress-label">Question 1 of 12</span>
+          <span id="quiz-score-label" class="px-2.5 py-0.5 rounded-full bg-sky-50 text-sky-700 border border-sky-200">Score: 0</span>
+        </div>
+        <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+          <div id="quiz-progress-bar" class="h-full bg-sky-600 rounded-full transition-all duration-300" style="width: 8.33%"></div>
+        </div>
+      </div>
+
+      <!-- Question Card -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200/90 p-5 sm:p-7">
+        <div class="flex items-center justify-between gap-2 mb-3">
+          <span id="question-tag" class="inline-block px-2.5 py-1 rounded-md bg-indigo-50 text-indigo-700 text-xs font-semibold">
+            Context Cloze
+          </span>
+        </div>
+
+        <p id="question-prompt" class="text-base sm:text-lg font-semibold text-slate-900 leading-relaxed mb-5"></p>
+
+        <!-- Options -->
+        <div id="options-container" class="space-y-2.5"></div>
+
+        <!-- Feedback Box -->
+        <div id="feedback-box" class="hidden mt-5 p-4 rounded-xl border text-sm leading-relaxed animate-in">
+          <div class="flex items-start gap-2.5">
+            <span id="feedback-icon" class="text-lg leading-none mt-0.5" aria-hidden="true"></span>
+            <div class="flex-1">
+              <p id="feedback-title" class="font-bold mb-1"></p>
+              <p id="feedback-text" class="text-slate-700"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next Button -->
+        <div id="next-container" class="hidden mt-5 pt-4 border-t border-slate-100 flex justify-end">
+          <button id="btn-next" type="button"
+            class="w-full sm:w-auto py-3 px-6 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm transition-colors flex items-center justify-center gap-2">
+            <span id="btn-next-label">Next Question</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 3: RESULTS -->
+    <section id="screen-results" class="hidden space-y-5 animate-in">
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200/90 p-6 sm:p-8 text-center">
+        <div id="results-badge" class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-sky-100 text-3xl mb-4" aria-hidden="true">🏆</div>
+        <h2 id="results-heading" class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-1">Practice Complete!</h2>
+        <p id="results-subtitle" class="text-sm text-slate-500 mb-5"></p>
+
+        <div class="inline-flex items-baseline gap-2 px-6 py-3 rounded-2xl bg-slate-50 border border-slate-200 mb-4">
+          <span id="results-score" class="text-4xl font-extrabold text-sky-600">0</span>
+          <span id="results-total" class="text-lg font-semibold text-slate-400">/ 12</span>
+          <span id="results-percent" class="ml-2 px-2.5 py-0.5 rounded-full text-xs font-bold bg-sky-100 text-sky-800">0%</span>
+        </div>
+
+        <p id="results-message" class="text-sm sm:text-base text-slate-600 max-w-md mx-auto mb-6"></p>
+
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <button id="btn-retry-missed" type="button"
+            class="hidden py-3 px-5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-semibold text-sm transition-colors">
+            Practice Missed Idioms
+          </button>
+          <button id="btn-restart" type="button"
+            class="py-3 px-5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-semibold text-sm transition-colors">
+            Try All 12 Again
+          </button>
+          <button id="btn-results-glossary" type="button"
+            class="py-3 px-5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 font-semibold text-sm border border-slate-300 transition-colors">
+            Idiom Reference
+          </button>
+        </div>
+      </div>
+
+      <!-- Review List -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200/90 p-5 sm:p-6">
+        <h3 class="text-base font-bold text-slate-900 mb-4">Answer Review</h3>
+        <div id="review-list" class="space-y-3"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL: GLOSSARY -->
+  <div id="modal-glossary" class="hidden fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full max-h-[85vh] flex flex-col overflow-hidden animate-in">
+      <div class="px-5 py-4 border-b border-slate-200 flex items-center justify-between">
+        <div>
+          <h3 class="text-base font-bold text-slate-900">12 Weather Idioms (B2 Reference)</h3>
+          <p class="text-xs text-slate-500">Module 22 · Meaning &amp; Usage</p>
+        </div>
+        <button id="btn-glossary-close" type="button" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100" aria-label="Close">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div id="glossary-items" class="p-5 overflow-y-auto space-y-3 text-sm"></div>
+    </div>
+  </div>
+
+  <!-- MODAL: QR CODE -->
+  <div id="modal-qr" class="hidden fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-xl max-w-sm w-full p-6 text-center animate-in">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-base font-bold text-slate-900">Scan to Open on Phone</h3>
+        <button id="btn-qr-close" type="button" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100" aria-label="Close">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div id="qr-target" class="inline-flex items-center justify-center p-3 bg-white border border-slate-200 rounded-xl mb-3 min-h-[196px] min-w-[196px]"></div>
+      <p id="qr-url-display" class="text-xs text-slate-500 break-all mb-3"></p>
+      <p class="text-xs text-slate-600 bg-sky-50 border border-sky-100 rounded-lg p-2.5">
+        Once deployed on Vercel, this QR code automatically points to your live classroom link.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const IDIOMS_DATA = [
+      {
+        id: 1,
+        idiom: "be a breeze",
+        meaning: "to be very easy to do without much effort",
+        tag: "Context Cloze",
+        prompt: "After practicing every day for a month, the final speaking interview was ________ for Elena.",
+        options: [
+          "a breeze",
+          "on cloud nine",
+          "a storm in a teacup",
+          "the calm before the storm"
+        ],
+        correct: "a breeze",
+        explanation: "\"Be a breeze\" means something is effortless or very easy. Note the article: we say \"be a breeze\" (noun phrase)."
+      },
+      {
+        id: 2,
+        idiom: "be as right as rain",
+        meaning: "to feel completely healthy, well, or recovered again",
+        tag: "Context Cloze",
+        prompt: "You look exhausted right now, but get a good night's sleep and by tomorrow morning you'll ________.",
+        options: [
+          "be as right as rain",
+          "take a rain check",
+          "save for a rainy day",
+          "chase rainbows"
+        ],
+        correct: "be as right as rain",
+        explanation: "\"Be as right as rain\" means to feel completely well or back to normal, especially after being sick or tired."
+      },
+      {
+        id: 3,
+        idiom: "break the ice",
+        meaning: "to say or do something to relieve tension and start conversation in a group",
+        tag: "Context Cloze",
+        prompt: "Nobody knew each other at the workshop, so the facilitator started with a quick game to ________.",
+        options: [
+          "break the ice",
+          "steal their thunder",
+          "get wind of it",
+          "make a storm in a teacup"
+        ],
+        correct: "break the ice",
+        explanation: "\"Break the ice\" means to make people feel relaxed and comfortable when meeting for the first time."
+      },
+      {
+        id: 4,
+        idiom: "it's raining cats and dogs",
+        meaning: "it is raining extremely heavily",
+        tag: "Situational Match",
+        prompt: "We had to cancel the outdoor concert because ________ and the stage was completely flooded.",
+        options: [
+          "it was raining cats and dogs",
+          "it was a breeze",
+          "we were chasing rainbows",
+          "it was as right as rain"
+        ],
+        correct: "it was raining cats and dogs",
+        explanation: "\"It's raining cats and dogs\" (past: \"it was raining cats and dogs\") is an idiomatic way to describe a torrential downpour."
+      },
+      {
+        id: 5,
+        idiom: "calm before the storm",
+        meaning: "a quiet, peaceful period right before a time of intense stress, trouble, or busyness",
+        tag: "Context Cloze",
+        prompt: "The office is surprisingly quiet this Monday morning, but I know it's just the ________ before next week's product launch.",
+        options: [
+          "calm before the storm",
+          "storm in a teacup",
+          "rain check",
+          "breeze"
+        ],
+        correct: "calm before the storm",
+        explanation: "\"The calm before the storm\" refers to a deceptively peaceful moment right before a chaotic or demanding period."
+      },
+      {
+        id: 6,
+        idiom: "chase rainbows",
+        meaning: "to pursue unrealistic, impossible, or impractical dreams",
+        tag: "Meaning in Context",
+        prompt: "His friends warned him he was ________ by quitting his job to become a movie star without any acting experience.",
+        options: [
+          "chasing rainbows",
+          "saving for a rainy day",
+          "on cloud nine",
+          "breaking the ice"
+        ],
+        correct: "chasing rainbows",
+        explanation: "\"Chase rainbows\" means to waste time pursuing goals that are almost impossible to achieve."
+      },
+      {
+        id: 7,
+        idiom: "be on cloud nine",
+        meaning: "to feel extremely happy and elated",
+        tag: "Context Cloze",
+        prompt: "Ever since Marco found out he got the scholarship to study in Canada, he has ________.",
+        options: [
+          "been on cloud nine",
+          "gotten wind of it",
+          "stolen someone's thunder",
+          "taken a rain check"
+        ],
+        correct: "been on cloud nine",
+        explanation: "\"Be on cloud nine\" expresses extreme happiness or euphoria (present perfect here: \"has been on cloud nine\")."
+      },
+      {
+        id: 8,
+        idiom: "steal somebody's thunder",
+        meaning: "to take attention or credit away from another person's achievement or announcement",
+        tag: "Situational Match",
+        prompt: "I was about to announce my promotion at dinner, but my brother ________ by announcing his engagement five minutes earlier.",
+        options: [
+          "stole my thunder",
+          "broke the ice",
+          "chased rainbows",
+          "was a breeze"
+        ],
+        correct: "stole my thunder",
+        explanation: "\"Steal somebody's thunder\" means to spoil someone's moment of success or take the spotlight away from them."
+      },
+      {
+        id: 9,
+        idiom: "make a storm in a teacup",
+        meaning: "to exaggerate or make a huge fuss over a minor, unimportant issue",
+        tag: "Meaning in Context",
+        prompt: "They argued for two hours about who forgot to refill the coffee machine—honestly, they're just ________.",
+        options: [
+          "making a storm in a teacup",
+          "in the calm before the storm",
+          "saving for a rainy day",
+          "getting wind of it"
+        ],
+        correct: "making a storm in a teacup",
+        explanation: "\"Make a storm in a teacup\" (also \"a tempest in a teapot\" in AmE) means overreacting to something trivial."
+      },
+      {
+        id: 10,
+        idiom: "save for a rainy day",
+        meaning: "to set aside money or resources for an unexpected future need or emergency",
+        tag: "Context Cloze",
+        prompt: "Even though her salary increased, Ana prefers to put 15% into her emergency fund to ________.",
+        options: [
+          "save for a rainy day",
+          "take a rain check",
+          "be as right as rain",
+          "chase rainbows"
+        ],
+        correct: "save for a rainy day",
+        explanation: "\"Save for a rainy day\" means keeping money aside for future hard times or unexpected expenses."
+      },
+      {
+        id: 11,
+        idiom: "get wind of",
+        meaning: "to hear a rumor or unofficially find out about something secret",
+        tag: "Context Cloze",
+        prompt: "We wanted the CEO's retirement to be a surprise, but somehow the local press ________ it before the official memo.",
+        options: [
+          "got wind of",
+          "stole the thunder of",
+          "broke the ice on",
+          "made a breeze of"
+        ],
+        correct: "got wind of",
+        explanation: "\"Get wind of something\" means to learn about something secret or private through rumors or indirect clues."
+      },
+      {
+        id: 12,
+        idiom: "take a rain check",
+        meaning: "to politely decline an invitation now while asking to do it another time",
+        tag: "Situational Match",
+        prompt: "I'd love to grab dinner with you tonight, but I have a deadline at 9 p.m.—can I ________ and join you on Friday instead?",
+        options: [
+          "take a rain check",
+          "be as right as rain",
+          "save for a rainy day",
+          "be on cloud nine"
+        ],
+        correct: "take a rain check",
+        explanation: "\"Take a rain check\" is a polite way to postpone an invitation or offer to a later date."
+      }
+    ];
+
+    // State
+    let activeQuestions = [];
+    let currentIndex = 0;
+    let score = 0;
+    let answered = false;
+    let userAnswers = [];
+    let studentName = "";
+
+    // DOM Elements
+    const screenStart = document.getElementById("screen-start");
+    const screenQuiz = document.getElementById("screen-quiz");
+    const screenResults = document.getElementById("screen-results");
+
+    const inputName = document.getElementById("student-name");
+    const toggleShuffle = document.getElementById("toggle-shuffle");
+
+    const progressLabel = document.getElementById("quiz-progress-label");
+    const scoreLabel = document.getElementById("quiz-score-label");
+    const progressBar = document.getElementById("quiz-progress-bar");
+    const questionTag = document.getElementById("question-tag");
+    const questionPrompt = document.getElementById("question-prompt");
+    const optionsContainer = document.getElementById("options-container");
+    const feedbackBox = document.getElementById("feedback-box");
+    const feedbackIcon = document.getElementById("feedback-icon");
+    const feedbackTitle = document.getElementById("feedback-title");
+    const feedbackText = document.getElementById("feedback-text");
+    const nextContainer = document.getElementById("next-container");
+    const btnNext = document.getElementById("btn-next");
+    const btnNextLabel = document.getElementById("btn-next-label");
+
+    const resultsBadge = document.getElementById("results-badge");
+    const resultsHeading = document.getElementById("results-heading");
+    const resultsSubtitle = document.getElementById("results-subtitle");
+    const resultsScore = document.getElementById("results-score");
+    const resultsTotal = document.getElementById("results-total");
+    const resultsPercent = document.getElementById("results-percent");
+    const resultsMessage = document.getElementById("results-message");
+    const btnRetryMissed = document.getElementById("btn-retry-missed");
+    const reviewList = document.getElementById("review-list");
+
+    const modalGlossary = document.getElementById("modal-glossary");
+    const glossaryItems = document.getElementById("glossary-items");
+    const modalQr = document.getElementById("modal-qr");
+    const qrTarget = document.getElementById("qr-target");
+    const qrUrlDisplay = document.getElementById("qr-url-display");
+
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function showScreen(target) {
+      [screenStart, screenQuiz, screenResults].forEach(s => s.classList.add("hidden"));
+      target.classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function startQuiz(questionsSubset = null) {
+      studentName = inputName.value.trim();
+      const shouldShuffle = toggleShuffle.checked;
+      const baseList = questionsSubset || IDIOMS_DATA;
+      activeQuestions = (shouldShuffle ? shuffleArray(baseList) : [...baseList]).map(q => ({
+        ...q,
+        shuffledOptions: shouldShuffle ? shuffleArray(q.options) : [...q.options]
+      }));
+      currentIndex = 0;
+      score = 0;
+      userAnswers = [];
+      showScreen(screenQuiz);
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      answered = false;
+      const q = activeQuestions[currentIndex];
+      const total = activeQuestions.length;
+
+      progressLabel.textContent = `Question ${currentIndex + 1} of ${total}`;
+      scoreLabel.textContent = `Score: ${score}`;
+      progressBar.style.width = `${((currentIndex + 1) / total) * 100}%`;
+
+      questionTag.textContent = q.tag;
+      questionPrompt.textContent = q.prompt;
+
+      feedbackBox.classList.add("hidden");
+      nextContainer.classList.add("hidden");
+      btnNextLabel.textContent = currentIndex === total - 1 ? "See Results" : "Next Question";
+
+      optionsContainer.innerHTML = "";
+      const letters = ["A", "B", "C", "D"];
+
+      q.shuffledOptions.forEach((opt, idx) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "option-btn w-full text-left px-4 py-3.5 rounded-xl border border-slate-200 bg-white hover:border-sky-400 hover:bg-sky-50/50 text-slate-800 font-medium text-sm sm:text-base flex items-center gap-3 min-h-[52px]";
+        btn.dataset.option = opt;
+
+        const badge = document.createElement("span");
+        badge.className = "w-7 h-7 rounded-lg bg-slate-100 text-slate-600 font-bold text-xs flex items-center justify-center shrink-0";
+        badge.textContent = letters[idx];
+
+        const label = document.createElement("span");
+        label.className = "flex-1";
+        label.textContent = opt;
+
+        btn.appendChild(badge);
+        btn.appendChild(label);
+        btn.addEventListener("click", () => handleAnswer(opt, btn));
+        optionsContainer.appendChild(btn);
+      });
+    }
+
+    function handleAnswer(selectedOption, clickedBtn) {
+      if (answered) return;
+      answered = true;
+
+      const q = activeQuestions[currentIndex];
+      const isCorrect = selectedOption === q.correct;
+
+      if (isCorrect) {
+        score += 1;
+        scoreLabel.textContent = `Score: ${score}`;
+      }
+
+      userAnswers.push({ item: q, selected: selectedOption, isCorrect });
+
+      const allBtns = optionsContainer.querySelectorAll("button");
+      allBtns.forEach(btn => {
+        btn.disabled = true;
+        const opt = btn.dataset.option;
+        const badge = btn.querySelector("span:first-child");
+
+        btn.classList.remove("hover:border-sky-400", "hover:bg-sky-50/50");
+
+        if (opt === q.correct) {
+          btn.classList.remove("border-slate-200", "bg-white");
+          btn.classList.add("border-emerald-500", "bg-emerald-50", "text-emerald-950");
+          badge.classList.remove("bg-slate-100", "text-slate-600");
+          badge.classList.add("bg-emerald-600", "text-white");
+        } else if (btn === clickedBtn && !isCorrect) {
+          btn.classList.remove("border-slate-200", "bg-white");
+          btn.classList.add("border-rose-400", "bg-rose-50", "text-rose-950");
+          badge.classList.remove("bg-slate-100", "text-slate-600");
+          badge.classList.add("bg-rose-600", "text-white");
+        } else {
+          btn.classList.add("opacity-55");
+        }
+      });
+
+      feedbackBox.classList.remove("hidden", "bg-emerald-50", "border-emerald-200", "bg-rose-50", "border-rose-200");
+      if (isCorrect) {
+        feedbackBox.classList.add("bg-emerald-50", "border-emerald-200");
+        feedbackIcon.textContent = "✅";
+        feedbackTitle.textContent = "Spot on!";
+        feedbackTitle.className = "font-bold mb-1 text-emerald-800";
+      } else {
+        feedbackBox.classList.add("bg-rose-50", "border-rose-200");
+        feedbackIcon.textContent = "💡";
+        feedbackTitle.textContent = `Not quite — the correct answer is "${q.correct}"`;
+        feedbackTitle.className = "font-bold mb-1 text-rose-800";
+      }
+
+      feedbackText.textContent = q.explanation;
+      nextContainer.classList.remove("hidden");
+    }
+
+    function showResults() {
+      showScreen(screenResults);
+      const total = activeQuestions.length;
+      const pct = Math.round((score / total) * 100);
+
+      resultsScore.textContent = score;
+      resultsTotal.textContent = `/ ${total}`;
+      resultsPercent.textContent = `${pct}%`;
+
+      resultsSubtitle.textContent = studentName
+        ? `Great effort, ${studentName}! · Module 22 (B2)`
+        : "Module 22 (B2) · Weather Idioms Controlled Practice";
+
+      if (pct === 100) {
+        resultsBadge.textContent = "🌟";
+        resultsHeading.textContent = "Flawless Score!";
+        resultsMessage.textContent = "You nailed every single weather idiom in context. You're ready to use them naturally in speaking!";
+      } else if (pct >= 75) {
+        resultsBadge.textContent = "🏆";
+        resultsHeading.textContent = "Well Done!";
+        resultsMessage.textContent = "Strong B2 command of these idioms. Review the ones you missed below to lock them in.";
+      } else {
+        resultsBadge.textContent = "🌦️";
+        resultsHeading.textContent = "Good Practice!";
+        resultsMessage.textContent = "Idioms take repetition. Check the explanations below and retry the ones you missed.";
+      }
+
+      const missedItems = userAnswers.filter(a => !a.isCorrect).map(a => a.item);
+      if (missedItems.length > 0) {
+        btnRetryMissed.classList.remove("hidden");
+        btnRetryMissed.textContent = `Practice ${missedItems.length} Missed Idiom${missedItems.length > 1 ? "s" : ""}`;
+        btnRetryMissed.onclick = () => startQuiz(missedItems);
+      } else {
+        btnRetryMissed.classList.add("hidden");
+      }
+
+      reviewList.innerHTML = "";
+      userAnswers.forEach((entry, idx) => {
+        const card = document.createElement("div");
+        card.className = `p-4 rounded-xl border text-sm ${entry.isCorrect ? "bg-emerald-50/50 border-emerald-200" : "bg-rose-50/50 border-rose-200"}`;
+
+        const header = document.createElement("div");
+        header.className = "flex items-center justify-between gap-2 mb-1.5";
+
+        const title = document.createElement("span");
+        title.className = "font-bold text-slate-900 capitalize";
+        title.textContent = `${idx + 1}. ${entry.item.idiom}`;
+
+        const status = document.createElement("span");
+        status.className = `text-xs font-semibold px-2 py-0.5 rounded-full ${entry.isCorrect ? "bg-emerald-100 text-emerald-800" : "bg-rose-100 text-rose-800"}`;
+        status.textContent = entry.isCorrect ? "Correct" : `You chose: ${entry.selected}`;
+
+        header.appendChild(title);
+        header.appendChild(status);
+
+        const exp = document.createElement("p");
+        exp.className = "text-slate-600 text-xs leading-relaxed";
+        exp.textContent = entry.item.explanation;
+
+        card.appendChild(header);
+        card.appendChild(exp);
+        reviewList.appendChild(card);
+      });
+    }
+
+    function populateGlossary() {
+      glossaryItems.innerHTML = "";
+      IDIOMS_DATA.forEach((item, i) => {
+        const row = document.createElement("div");
+        row.className = "p-3 rounded-xl bg-slate-50 border border-slate-200/80";
+        const term = document.createElement("p");
+        term.className = "font-bold text-slate-900 capitalize";
+        term.textContent = `${i + 1}. ${item.idiom}`;
+        const def = document.createElement("p");
+        def.className = "text-slate-600 text-xs mt-0.5";
+        def.textContent = item.meaning;
+        row.appendChild(term);
+        row.appendChild(def);
+        glossaryItems.appendChild(row);
+      });
+    }
+
+    function openQrModal() {
+      modalQr.classList.remove("hidden");
+      qrTarget.innerHTML = "";
+      const currentUrl = window.location.href;
+      const isHttp = currentUrl.startsWith("http://") || currentUrl.startsWith("https://");
+      qrUrlDisplay.textContent = isHttp ? currentUrl : "Preview mode — deploy to Vercel to get your live QR URL";
+
+      try {
+        if (typeof QRCode !== "undefined" && isHttp) {
+          new QRCode(qrTarget, {
+            text: currentUrl,
+            width: 180,
+            height: 180,
+            colorDark: "#0f172a",
+            colorLight: "#ffffff"
+          });
+        } else {
+          qrTarget.innerHTML = '<div class="text-xs text-slate-500 px-4">Deploy to Vercel to generate a scannable classroom QR code for your live URL.</div>';
+        }
+      } catch (e) {
+        qrTarget.innerHTML = '<div class="text-xs text-slate-500 px-4">QR generator unavailable offline.</div>';
+      }
+    }
+
+    // Event Listeners
+    document.getElementById("btn-start").addEventListener("click", () => startQuiz());
+    document.getElementById("btn-restart").addEventListener("click", () => startQuiz());
+
+    btnNext.addEventListener("click", () => {
+      if (currentIndex < activeQuestions.length - 1) {
+        currentIndex += 1;
+        renderQuestion();
+      } else {
+        showResults();
+      }
+    });
+
+    document.getElementById("btn-glossary-open").addEventListener("click", () => {
+      populateGlossary();
+      modalGlossary.classList.remove("hidden");
+    });
+    document.getElementById("btn-results-glossary").addEventListener("click", () => {
+      populateGlossary();
+      modalGlossary.classList.remove("hidden");
+    });
+    document.getElementById("btn-glossary-close").addEventListener("click", () => modalGlossary.classList.add("hidden"));
+    modalGlossary.addEventListener("click", (e) => {
+      if (e.target === modalGlossary) modalGlossary.classList.add("hidden");
+    });
+
+    document.getElementById("btn-qr-open").addEventListener("click", openQrModal);
+    document.getElementById("btn-qr-close").addEventListener("click", () => modalQr.classList.add("hidden"));
+    modalQr.addEventListener("click", (e) => {
+      if (e.target === modalQr) modalQr.classList.add("hidden");
+    });
+  </script>
+</body>
+</html>
